@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CYBER HUB Tools | Sikti, Araria</title>
+    <meta name="description" content="All-in-One Cyber Cafe Operating System and Digital Service Point for Sikti, Araria, Bihar. Tools for PDF, Images, Calculators, Resume, Application, Billing and more - by Rahul Rrony." />
+    <meta property="og:title" content="CYBER HUB - Digital Service Point" />
+    <meta property="og:description" content="All-in-One Cyber Cafe Operating System and Digital Service Point for Sikti, Araria, Bihar." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google Fonts: Plus Jakarta Sans (body) & Outfit (headings) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome 6.5.1 Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Core Libraries (PDF-Lib, jsPDF, QRCode) -->
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+    <!-- Cyber Hub Stylesheet -->
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- Top Header Bar -->
+    <header class="app-header">
+      <div class="header-left">
+        <button id="mobile-menu-toggle" class="mobile-toggle" aria-label="Toggle Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="brand-logo" onclick="CyberApp.renderView('dashboard')" style="cursor: pointer;">
+          <div class="brand-icon">
+            <i class="fa-solid fa-globe"></i>
+          </div>
+          <div>
+            <div class="brand-name">CYBER HUB</div>
+            <div class="brand-sub">Digital Service Point • Sikti, Araria</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-center">
+        <div class="search-bar-wrap">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input 
+            type="text" 
+            id="global-search" 
+            class="global-search-input" 
+            placeholder="Search 50+ Cyber Cafe tools (e.g. passport photo, pdf compress, emi)..."
+            autocomplete="off"
+          >
+          <span class="search-shortcut">/</span>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <!-- Contact & Founder Badges -->
+        <a 
+          href="https://wa.me/917369087808?text=Namaste%20Rahul%20ji,%20mujhe%20CYBER%20HUB%20se%20digital%20service%20ke%20bare%20me%20jankari%20chahiye." 
+          target="_blank" 
+          class="whatsapp-badge" 
+          title="Direct WhatsApp Support"
+        >
+          <i class="fa-brands fa-whatsapp" style="font-size: 16px;"></i>
+          <span>WhatsApp Help</span>
+        </a>
+
+        <div class="founder-badge hide-mobile">
+          <i class="fa-solid fa-user-tie" style="color: var(--primary);"></i>
+          <span>Rahul Rrony</span>
+        </div>
+
+        <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle Theme" title="Switch Light / Dark Theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="app-layout">
+      <!-- Left Sidebar Navigation -->
+      <aside class="app-sidebar" id="sidebar">
+        <div class="nav-section-title">Main Menu</div>
+        <nav class="sidebar-nav">
+          <button class="nav-item active" data-view="dashboard" onclick="CyberApp.renderView('dashboard')">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+          </button>
+
+          <button class="nav-item" data-view="tools" onclick="CyberApp.renderView('tools')">
+            <i class="fa-solid fa-toolbox"></i>
+            <span>All Tools</span>
+            <span class="badge" id="badge-all-tools">50+</span>
+          </button>
+
+          <button class="nav-item" data-view="favorites" onclick="CyberApp.renderView('favorites')">
+            <i class="fa-solid fa-star" style="color: #f59e0b;"></i>
+            <span>Favorites</span>
+          </button>
+
+          <button class="nav-item" data-view="recent" onclick="CyberApp.renderView('recent')">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            <span>Recently Used</span>
+          </button>
+
+          <button class="nav-item" data-view="business" onclick="CyberApp.renderView('business')">
+            <i class="fa-solid fa-store" style="color: #3b82f6;"></i>
+            <span>Business & Khata</span>
+          </button>
+
+          <button class="nav-item" data-view="ai" onclick="CyberApp.renderView('ai')">
+            <i class="fa-solid fa-robot" style="color: #8b5cf6;"></i>
+            <span>AI Assistant</span>
+          </button>
+
+          <button class="nav-item" data-view="settings" onclick="CyberApp.renderView('settings')">
+            <i class="fa-solid fa-gear"></i>
+            <span>Settings</span>
+          </button>
+        </nav>
+
+        <div class="nav-section-title">Tool Categories</div>
+        <nav class="sidebar-nav">
+          <button class="nav-item" data-view="pdf" onclick="CyberApp.renderView('pdf')">
+            <i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i>
+            <span>PDF Tools</span>
+          </button>
+
+          <button class="nav-item" data-view="image" onclick="CyberApp.renderView('image')">
+            <i class="fa-solid fa-image" style="color: #10b981;"></i>
+            <span>Image & Photo</span>
+          </button>
+
+          <button class="nav-item" data-view="calculator" onclick="CyberApp.renderView('calculator')">
+            <i class="fa-solid fa-calculator" style="color: #f59e0b;"></i>
+            <span>Calculators</span>
+          </button>
+
+          <button class="nav-item" data-view="documents" onclick="CyberApp.renderView('documents')">
+            <i class="fa-solid fa-file-signature" style="color: #8b5cf6;"></i>
+            <span>Documents & Forms</span>
+          </button>
+
+          <button class="nav-item" data-view="text" onclick="CyberApp.renderView('text')">
+            <i class="fa-solid fa-font" style="color: #06b6d4;"></i>
+            <span>Text Utilities</span>
+          </button>
+
+          <button class="nav-item" data-view="student" onclick="CyberApp.renderView('student')">
+            <i class="fa-solid fa-graduation-cap" style="color: #ec4899;"></i>
+            <span>Student & Teacher</span>
+          </button>
+
+          <button class="nav-item" data-view="employee" onclick="CyberApp.renderView('employee')">
+            <i class="fa-solid fa-briefcase" style="color: #14b8a6;"></i>
+            <span>Employee & Money</span>
+          </button>
+
+          <button class="nav-item" data-view="cafe" onclick="CyberApp.renderView('cafe')">
+            <i class="fa-solid fa-mug-hot" style="color: #f97316;"></i>
+            <span>Cyber Cafe Utilities</span>
+          </button>
+        </nav>
+
+        <div class="nav-section-title">Recently Opened</div>
+        <div id="sidebar-recent-list" style="display: flex; flex-direction: column; gap: 4px;">
+          <!-- Dynamically populated -->
+        </div>
+
+        <!-- Sidebar Footer Info Card -->
+        <div class="sidebar-footer-card">
+          <div style="font-weight: 700; font-size: 13px; color: var(--text);">CYBER HUB SIKTI</div>
+          <div style="font-size: 11.5px; color: var(--muted); margin-top: 2px;">Araria, Bihar - 854332</div>
+          <div style="font-size: 11px; color: var(--muted); margin-top: 4px;">Rahul Rrony: +91 73690 87808</div>
+          <a href="tel:+917369087808" class="btn btn-secondary btn-sm" style="margin-top: 8px; width: 100%; font-size: 11.5px; justify-content: center;">
+            <i class="fa-solid fa-phone"></i> Call Rahul
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main App Content Area -->
+      <main class="app-main" id="main-content">
+        <!-- Views rendered here by CyberApp.renderView() -->
+      </main>
+    </div>
+
+    <!-- Mobile Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav">
+      <button class="bottom-nav-item active" data-view="dashboard" onclick="CyberApp.renderView('dashboard')">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </button>
+
+      <button class="bottom-nav-item" data-view="tools" onclick="CyberApp.renderView('tools')">
+        <i class="fa-solid fa-toolbox"></i>
+        <span>Tools</span>
+      </button>
+
+      <button class="bottom-nav-item" data-view="ai" onclick="CyberApp.renderView('ai')">
+        <i class="fa-solid fa-robot"></i>
+        <span>AI Bot</span>
+      </button>
+
+      <button class="bottom-nav-item" data-view="business" onclick="CyberApp.renderView('business')">
+        <i class="fa-solid fa-store"></i>
+        <span>Khata</span>
+      </button>
+
+      <button class="bottom-nav-item" data-view="settings" onclick="CyberApp.renderView('settings')">
+        <i class="fa-solid fa-gear"></i>
+        <span>Settings</span>
+      </button>
+    </nav>
+
+    <!-- Tool Interactive Modal Dialog -->
+    <div class="modal-overlay" id="tool-modal" role="dialog" aria-modal="true">
+      <div class="modal-container">
+        <div class="modal-header">
+          <div class="modal-title-wrap">
+            <i id="modal-tool-icon" class="fa-solid fa-toolbox" style="color: var(--primary); font-size: 18px;"></i>
+            <h2 id="modal-tool-title">Tool Name</h2>
+          </div>
+          <button id="modal-close-btn" class="modal-close" aria-label="Close dialog">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="modal-body" id="modal-tool-body">
+          <!-- Tool UI dynamically mounted here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Cyber Hub Scripts -->
+    <script src="./tools-data.js"></script>
+    <script src="./tools-engine.js"></script>
+    <script src="./tools-engine-pdf-biz.js"></script>
+    <script src="./tools-extra.js"></script>
+    <script src="./tools-more.js"></script>
+    <script src="./tools-final.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

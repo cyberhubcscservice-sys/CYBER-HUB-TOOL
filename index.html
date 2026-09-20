@@ -1,253 +1,2195 @@
-<!doctype html>
-<html lang="en" data-theme="light">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CYBER HUB - Digital Service Point | Sikti, Araria, Bihar</title>
-    <meta name="description" content="All-in-One Cyber Cafe Operating System and Digital Service Point for Sikti, Araria, Bihar. Tools for PDF, Images, Calculators, Resume, Application, Billing and more - by Rahul Rrony." />
-    <meta property="og:title" content="CYBER HUB - Digital Service Point" />
-    <meta property="og:description" content="All-in-One Cyber Cafe Operating System and Digital Service Point for Sikti, Araria, Bihar." />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Fonts: Plus Jakarta Sans (body) & Outfit (headings) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>CYBER HUB | Digital Service Point - Sikti, Araria</title>
 
-    <!-- Font Awesome 6.5.1 Icons CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta name="description"
+    content="CYBER HUB Digital Service Point, Sikti Araria. PAN Card, Aadhaar, Voter, RTPS, Ayushman, Passport, AEPS, Online Forms और अन्य डिजिटल सेवाएँ।">
 
-    <!-- Core Libraries (PDF-Lib, jsPDF, QRCode) -->
-    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <meta name="theme-color" content="#2563eb">
 
-    <!-- Cyber Hub Stylesheet -->
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
-    <!-- Top Header Bar -->
-    <header class="app-header">
-      <div class="header-left">
-        <button id="mobile-menu-toggle" class="mobile-toggle" aria-label="Toggle Menu">
-          <i class="fa-solid fa-bars"></i>
-        </button>
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        <div class="brand-logo" onclick="CyberApp.renderView('dashboard')" style="cursor: pointer;">
-          <div class="brand-icon">
-            <i class="fa-solid fa-globe"></i>
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <style>
+
+    * {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      transition: background .3s, color .3s;
+    }
+
+    /* =========================
+       CUSTOM SCROLLBAR
+    ========================== */
+
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #e2e8f0;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #2563eb;
+      border-radius: 20px;
+    }
+
+    /* =========================
+       HERO BACKGROUND
+    ========================== */
+
+    .hero-bg {
+      background:
+        radial-gradient(circle at 10% 20%, rgba(59,130,246,.35), transparent 30%),
+        radial-gradient(circle at 90% 80%, rgba(99,102,241,.35), transparent 30%),
+        linear-gradient(135deg,#0f172a,#1e3a8a,#312e81);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg::before {
+      content: "";
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.12);
+      top: -180px;
+      right: -100px;
+    }
+
+    .hero-bg::after {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.1);
+      bottom: -150px;
+      left: -100px;
+    }
+
+    /* =========================
+       GLASS
+    ========================== */
+
+    .glass {
+      background: rgba(255,255,255,.10);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255,255,255,.15);
+    }
+
+    /* =========================
+       SERVICE CARD
+    ========================== */
+
+    .service-card {
+      transition: all .3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 20px 35px rgba(15,23,42,.12);
+    }
+
+    .service-card.hidden-card {
+      display: none;
+    }
+
+    /* =========================
+       ICON
+    ========================== */
+
+    .service-icon {
+      transition: all .3s ease;
+    }
+
+    .service-card:hover .service-icon {
+      transform: rotate(-5deg) scale(1.08);
+    }
+
+    /* =========================
+       REVEAL ANIMATION
+    ========================== */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all .7s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================
+       FLOATING
+    ========================== */
+
+    .floating {
+      animation: floating 3s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+
+      0%,100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+
+    }
+
+    /* =========================
+       PULSE
+    ========================== */
+
+    .pulse-ring {
+      animation: pulseRing 2s infinite;
+    }
+
+    @keyframes pulseRing {
+
+      0% {
+        box-shadow: 0 0 0 0 rgba(34,197,94,.5);
+      }
+
+      70% {
+        box-shadow: 0 0 0 15px rgba(34,197,94,0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(34,197,94,0);
+      }
+
+    }
+
+    /* =========================
+       MODAL
+    ========================== */
+
+    .modal {
+      opacity: 0;
+      visibility: hidden;
+      transition: all .3s ease;
+    }
+
+    .modal.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-box {
+      transform: translateY(30px) scale(.95);
+      transition: all .3s ease;
+    }
+
+    .modal.show .modal-box {
+      transform: translateY(0) scale(1);
+    }
+
+    /* =========================
+       DARK MODE
+    ========================== */
+
+    body.dark {
+      background: #020617;
+      color: #e2e8f0;
+    }
+
+    body.dark .dark-card {
+      background: #0f172a !important;
+      border-color: #1e293b !important;
+      color: #e2e8f0;
+    }
+
+    body.dark .dark-text {
+      color: #e2e8f0 !important;
+    }
+
+    body.dark .dark-muted {
+      color: #94a3b8 !important;
+    }
+
+    body.dark .dark-section {
+      background: #020617 !important;
+    }
+
+    /* =========================
+       SEARCH
+    ========================== */
+
+    .search-box {
+      transition: .3s;
+    }
+
+    .search-box:focus-within {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(37,99,235,.15);
+    }
+
+    /* =========================
+       CATEGORY BUTTON
+    ========================== */
+
+    .category-btn.active {
+      background: #2563eb;
+      color: white;
+      border-color: #2563eb;
+    }
+
+  </style>
+</head>
+
+
+<body class="bg-slate-50 text-slate-800">
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-xl shadow-sm border-b border-slate-200">
+
+  <div class="max-w-7xl mx-auto px-4">
+
+    <div class="h-16 flex items-center justify-between">
+
+      <!-- LOGO -->
+
+      <a href="#home" class="flex items-center gap-3">
+
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white flex items-center justify-center font-bold text-lg shadow-lg">
+          CH
+        </div>
+
+        <div>
+          <div class="font-extrabold text-slate-900 leading-tight">
+            CYBER HUB
           </div>
-          <div>
-            <div class="brand-name">CYBER HUB</div>
-            <div class="brand-sub">Digital Service Point • Sikti, Araria</div>
+
+          <div class="text-[10px] text-blue-600 font-semibold">
+            DIGITAL SERVICE POINT
           </div>
         </div>
-      </div>
 
-      <div class="header-center">
-        <div class="search-bar-wrap">
-          <i class="fa-solid fa-magnifying-glass search-icon"></i>
-          <input 
-            type="text" 
-            id="global-search" 
-            class="global-search-input" 
-            placeholder="Search 50+ Cyber Cafe tools (e.g. passport photo, pdf compress, emi)..."
-            autocomplete="off"
-          >
-          <span class="search-shortcut">/</span>
-        </div>
-      </div>
+      </a>
 
-      <div class="header-right">
-        <!-- Contact & Founder Badges -->
-        <a 
-          href="https://wa.me/917369087808?text=Namaste%20Rahul%20ji,%20mujhe%20CYBER%20HUB%20se%20digital%20service%20ke%20bare%20me%20jankari%20chahiye." 
-          target="_blank" 
-          class="whatsapp-badge" 
-          title="Direct WhatsApp Support"
-        >
-          <i class="fa-brands fa-whatsapp" style="font-size: 16px;"></i>
-          <span>WhatsApp Help</span>
+
+      <!-- DESKTOP NAV -->
+
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium">
+
+        <a href="#home" class="hover:text-blue-600 transition">
+          Home
         </a>
 
-        <div class="founder-badge hide-mobile">
-          <i class="fa-solid fa-user-tie" style="color: var(--primary);"></i>
-          <span>Rahul Rrony</span>
-        </div>
+        <a href="#services" class="hover:text-blue-600 transition">
+          Services
+        </a>
 
-        <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle Theme" title="Switch Light / Dark Theme">
-          <i class="fa-solid fa-moon"></i>
+        <a href="#tools" class="hover:text-blue-600 transition">
+          Tools
+        </a>
+
+        <a href="#about" class="hover:text-blue-600 transition">
+          About
+        </a>
+
+        <a href="#contact" class="hover:text-blue-600 transition">
+          Contact
+        </a>
+
+      </nav>
+
+
+      <!-- ACTIONS -->
+
+      <div class="flex items-center gap-2">
+
+        <!-- DARK MODE -->
+
+        <button
+          onclick="toggleDarkMode()"
+          aria-label="Toggle Dark Mode"
+          class="w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition">
+
+          <i id="themeIcon" class="fa-solid fa-moon"></i>
+
         </button>
+
+
+        <!-- CALL -->
+
+        <a href="tel:+917368087908"
+          class="hidden sm:flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition">
+
+          <i class="fa-solid fa-phone"></i>
+          Call
+
+        </a>
+
+
+        <!-- MOBILE MENU -->
+
+        <button
+          onclick="toggleMenu()"
+          class="md:hidden w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center">
+
+          <i id="menuIcon" class="fa-solid fa-bars"></i>
+
+        </button>
+
       </div>
-    </header>
 
-    <!-- Main Container -->
-    <div class="app-layout">
-      <!-- Left Sidebar Navigation -->
-      <aside class="app-sidebar" id="sidebar">
-        <div class="nav-section-title">Main Menu</div>
-        <nav class="sidebar-nav">
-          <button class="nav-item active" data-view="dashboard" onclick="CyberApp.renderView('dashboard')">
-            <i class="fa-solid fa-house"></i>
-            <span>Dashboard</span>
-          </button>
+    </div>
 
-          <button class="nav-item" data-view="tools" onclick="CyberApp.renderView('tools')">
-            <i class="fa-solid fa-toolbox"></i>
-            <span>All Tools</span>
-            <span class="badge" id="badge-all-tools">50+</span>
-          </button>
 
-          <button class="nav-item" data-view="favorites" onclick="CyberApp.renderView('favorites')">
-            <i class="fa-solid fa-star" style="color: #f59e0b;"></i>
-            <span>Favorites</span>
-          </button>
+    <!-- MOBILE NAV -->
 
-          <button class="nav-item" data-view="recent" onclick="CyberApp.renderView('recent')">
-            <i class="fa-solid fa-clock-rotate-left"></i>
-            <span>Recently Used</span>
-          </button>
+    <div id="mobileMenu"
+      class="hidden md:hidden pb-4">
 
-          <button class="nav-item" data-view="business" onclick="CyberApp.renderView('business')">
-            <i class="fa-solid fa-store" style="color: #3b82f6;"></i>
-            <span>Business & Khata</span>
-          </button>
+      <div class="bg-slate-50 rounded-2xl p-3 space-y-1">
 
-          <button class="nav-item" data-view="ai" onclick="CyberApp.renderView('ai')">
-            <i class="fa-solid fa-robot" style="color: #8b5cf6;"></i>
-            <span>AI Assistant</span>
-          </button>
+        <a onclick="closeMenu()" href="#home"
+          class="block px-4 py-3 rounded-xl hover:bg-white">
+          🏠 Home
+        </a>
 
-          <button class="nav-item" data-view="settings" onclick="CyberApp.renderView('settings')">
-            <i class="fa-solid fa-gear"></i>
-            <span>Settings</span>
-          </button>
-        </nav>
+        <a onclick="closeMenu()" href="#services"
+          class="block px-4 py-3 rounded-xl hover:bg-white">
+          📋 Services
+        </a>
 
-        <div class="nav-section-title">Tool Categories</div>
-        <nav class="sidebar-nav">
-          <button class="nav-item" data-view="pdf" onclick="CyberApp.renderView('pdf')">
-            <i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i>
-            <span>PDF Tools</span>
-          </button>
+        <a onclick="closeMenu()" href="#tools"
+          class="block px-4 py-3 rounded-xl hover:bg-white">
+          🧰 Free Tools
+        </a>
 
-          <button class="nav-item" data-view="image" onclick="CyberApp.renderView('image')">
-            <i class="fa-solid fa-image" style="color: #10b981;"></i>
-            <span>Image & Photo</span>
-          </button>
+        <a onclick="closeMenu()" href="#about"
+          class="block px-4 py-3 rounded-xl hover:bg-white">
+          ℹ️ About
+        </a>
 
-          <button class="nav-item" data-view="calculator" onclick="CyberApp.renderView('calculator')">
-            <i class="fa-solid fa-calculator" style="color: #f59e0b;"></i>
-            <span>Calculators</span>
-          </button>
+        <a onclick="closeMenu()" href="#contact"
+          class="block px-4 py-3 rounded-xl hover:bg-white">
+          📞 Contact
+        </a>
 
-          <button class="nav-item" data-view="documents" onclick="CyberApp.renderView('documents')">
-            <i class="fa-solid fa-file-signature" style="color: #8b5cf6;"></i>
-            <span>Documents & Forms</span>
-          </button>
+      </div>
 
-          <button class="nav-item" data-view="text" onclick="CyberApp.renderView('text')">
-            <i class="fa-solid fa-font" style="color: #06b6d4;"></i>
-            <span>Text Utilities</span>
-          </button>
+    </div>
 
-          <button class="nav-item" data-view="student" onclick="CyberApp.renderView('student')">
-            <i class="fa-solid fa-graduation-cap" style="color: #ec4899;"></i>
-            <span>Student & Teacher</span>
-          </button>
+  </div>
 
-          <button class="nav-item" data-view="employee" onclick="CyberApp.renderView('employee')">
-            <i class="fa-solid fa-briefcase" style="color: #14b8a6;"></i>
-            <span>Employee & Money</span>
-          </button>
+</header>
 
-          <button class="nav-item" data-view="cafe" onclick="CyberApp.renderView('cafe')">
-            <i class="fa-solid fa-mug-hot" style="color: #f97316;"></i>
-            <span>Cyber Cafe Utilities</span>
-          </button>
-        </nav>
 
-        <div class="nav-section-title">Recently Opened</div>
-        <div id="sidebar-recent-list" style="display: flex; flex-direction: column; gap: 4px;">
-          <!-- Dynamically populated -->
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section id="home"
+  class="hero-bg min-h-[720px] pt-28 pb-20 px-4 text-white flex items-center">
+
+  <div class="max-w-7xl mx-auto w-full">
+
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+
+      <!-- HERO TEXT -->
+
+      <div class="text-center lg:text-left relative z-10">
+
+        <div class="inline-flex items-center gap-2 glass px-4 py-2 rounded-full text-sm mb-6">
+
+          <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+
+          Government & Citizen Services
+
         </div>
 
-        <!-- Sidebar Footer Info Card -->
-        <div class="sidebar-footer-card">
-          <div style="font-weight: 700; font-size: 13px; color: var(--text);">CYBER HUB SIKTI</div>
-          <div style="font-size: 11.5px; color: var(--muted); margin-top: 2px;">Araria, Bihar - 854332</div>
-          <div style="font-size: 11px; color: var(--muted); margin-top: 4px;">Rahul Rrony: +91 73690 87808</div>
-          <a href="tel:+917369087808" class="btn btn-secondary btn-sm" style="margin-top: 8px; width: 100%; font-size: 11.5px; justify-content: center;">
-            <i class="fa-solid fa-phone"></i> Call Rahul
+
+        <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold leading-tight">
+
+          आपका अपना
+
+          <span class="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-300">
+            CYBER HUB
+          </span>
+
+        </h1>
+
+
+        <p class="mt-6 text-blue-100 text-base sm:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
+
+          सिकटी, अररिया में डिजिटल और ऑनलाइन सेवाओं के लिए
+          आपका भरोसेमंद Digital Service Point।
+
+        </p>
+
+
+        <div class="flex flex-wrap justify-center lg:justify-start gap-3 mt-8">
+
+          <a href="#services"
+            class="px-6 py-3.5 bg-white text-blue-900 rounded-xl font-bold shadow-xl hover:scale-105 transition">
+
+            <i class="fa-solid fa-layer-group mr-2"></i>
+
+            सभी सेवाएँ
+
           </a>
-        </div>
-      </aside>
 
-      <!-- Main App Content Area -->
-      <main class="app-main" id="main-content">
-        <!-- Views rendered here by CyberApp.renderView() -->
-      </main>
-    </div>
 
-    <!-- Mobile Bottom Navigation Bar -->
-    <nav class="mobile-bottom-nav">
-      <button class="bottom-nav-item active" data-view="dashboard" onclick="CyberApp.renderView('dashboard')">
-        <i class="fa-solid fa-house"></i>
-        <span>Home</span>
-      </button>
+          <a href="https://wa.me/917368087908?text=नमस्ते%20CYBER%20HUB,%20मुझे%20आपकी%20सेवा%20के%20बारे%20में%20जानकारी%20चाहिए।"
+            target="_blank"
+            class="px-6 py-3.5 bg-emerald-500 hover:bg-emerald-600 rounded-xl font-bold shadow-xl hover:scale-105 transition">
 
-      <button class="bottom-nav-item" data-view="tools" onclick="CyberApp.renderView('tools')">
-        <i class="fa-solid fa-toolbox"></i>
-        <span>Tools</span>
-      </button>
+            <i class="fa-brands fa-whatsapp mr-2"></i>
 
-      <button class="bottom-nav-item" data-view="ai" onclick="CyberApp.renderView('ai')">
-        <i class="fa-solid fa-robot"></i>
-        <span>AI Bot</span>
-      </button>
+            WhatsApp करें
 
-      <button class="bottom-nav-item" data-view="business" onclick="CyberApp.renderView('business')">
-        <i class="fa-solid fa-store"></i>
-        <span>Khata</span>
-      </button>
+          </a>
 
-      <button class="bottom-nav-item" data-view="settings" onclick="CyberApp.renderView('settings')">
-        <i class="fa-solid fa-gear"></i>
-        <span>Settings</span>
-      </button>
-    </nav>
-
-    <!-- Tool Interactive Modal Dialog -->
-    <div class="modal-overlay" id="tool-modal" role="dialog" aria-modal="true">
-      <div class="modal-container">
-        <div class="modal-header">
-          <div class="modal-title-wrap">
-            <i id="modal-tool-icon" class="fa-solid fa-toolbox" style="color: var(--primary); font-size: 18px;"></i>
-            <h2 id="modal-tool-title">Tool Name</h2>
-          </div>
-          <button id="modal-close-btn" class="modal-close" aria-label="Close dialog">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
         </div>
 
-        <div class="modal-body" id="modal-tool-body">
-          <!-- Tool UI dynamically mounted here -->
+
+        <!-- TRUST -->
+
+        <div class="flex flex-wrap justify-center lg:justify-start gap-5 mt-8 text-sm text-blue-100">
+
+          <span>
+            <i class="fa-solid fa-circle-check text-emerald-400 mr-1"></i>
+            Fast Service
+          </span>
+
+          <span>
+            <i class="fa-solid fa-circle-check text-emerald-400 mr-1"></i>
+            उचित मूल्य
+          </span>
+
+          <span>
+            <i class="fa-solid fa-circle-check text-emerald-400 mr-1"></i>
+            Trusted Service
+          </span>
+
         </div>
+
       </div>
+
+
+      <!-- HERO CARD -->
+
+      <div class="hidden lg:flex justify-center relative z-10">
+
+        <div class="glass rounded-[2rem] p-8 w-[390px] shadow-2xl floating">
+
+          <div class="text-center">
+
+            <div class="w-24 h-24 mx-auto rounded-3xl bg-white text-blue-700 flex items-center justify-center text-4xl font-extrabold shadow-xl">
+
+              CH
+
+            </div>
+
+
+            <h2 class="text-2xl font-bold mt-6">
+              CYBER HUB
+            </h2>
+
+            <p class="text-blue-200 text-sm mt-1">
+              Digital Service Point
+            </p>
+
+
+            <div class="grid grid-cols-2 gap-3 mt-7">
+
+              <div class="bg-white/10 rounded-2xl p-4">
+
+                <i class="fa-solid fa-id-card text-2xl text-cyan-300"></i>
+
+                <p class="text-xs mt-2">
+                  PAN & Voter
+                </p>
+
+              </div>
+
+
+              <div class="bg-white/10 rounded-2xl p-4">
+
+                <i class="fa-solid fa-file-circle-check text-2xl text-emerald-300"></i>
+
+                <p class="text-xs mt-2">
+                  RTPS
+                </p>
+
+              </div>
+
+
+              <div class="bg-white/10 rounded-2xl p-4">
+
+                <i class="fa-solid fa-fingerprint text-2xl text-yellow-300"></i>
+
+                <p class="text-xs mt-2">
+                  AEPS
+                </p>
+
+              </div>
+
+
+              <div class="bg-white/10 rounded-2xl p-4">
+
+                <i class="fa-solid fa-laptop text-2xl text-pink-300"></i>
+
+                <p class="text-xs mt-2">
+                  Online Forms
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <a href="tel:+917368087908"
+              class="block mt-6 bg-blue-500 hover:bg-blue-600 py-3 rounded-xl font-semibold transition">
+
+              <i class="fa-solid fa-phone mr-2"></i>
+              +91 73680 87908
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
 
-    <!-- Toast Notification Container -->
-    <div class="toast-container" id="toast-container"></div>
+  </div>
 
-    <!-- Cyber Hub Scripts -->
-    <script src="./tools-data.js"></script>
-    <script src="./tools-engine.js"></script>
-    <script src="./tools-engine-pdf-biz.js"></script>
-    <script src="./tools-extra.js"></script>
-    <script src="./tools-more.js"></script>
-    <script src="./tools-final.js"></script>
-    <script src="./app.js"></script>
-  </body>
+</section>
+
+
+
+<!-- =====================================================
+     QUICK FEATURES
+===================================================== -->
+
+<section class="relative -mt-8 z-20 px-4">
+
+  <div class="max-w-6xl mx-auto bg-white rounded-3xl shadow-xl border border-slate-100 p-5">
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+
+      <div class="flex items-center gap-4 p-3">
+
+        <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl">
+
+          <i class="fa-solid fa-shield-halved"></i>
+
+        </div>
+
+        <div>
+
+          <p class="font-bold text-sm">
+            विश्वसनीय सेवा
+          </p>
+
+          <p class="text-xs text-slate-500">
+            Trusted Service
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="flex items-center gap-4 p-3">
+
+        <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl">
+
+          <i class="fa-solid fa-bolt"></i>
+
+        </div>
+
+        <div>
+
+          <p class="font-bold text-sm">
+            तेज सेवा
+          </p>
+
+          <p class="text-xs text-slate-500">
+            Fast Processing
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="flex items-center gap-4 p-3">
+
+        <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl">
+
+          <i class="fa-solid fa-fingerprint"></i>
+
+        </div>
+
+        <div>
+
+          <p class="font-bold text-sm">
+            AEPS सुविधा
+          </p>
+
+          <p class="text-xs text-slate-500">
+            Banking Services
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="flex items-center gap-4 p-3">
+
+        <div class="w-12 h-12 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center text-xl">
+
+          <i class="fa-solid fa-clock"></i>
+
+        </div>
+
+        <div>
+
+          <p class="font-bold text-sm">
+            7 Days Service
+          </p>
+
+          <p class="text-xs text-slate-500">
+            Monday - Sunday
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SERVICES
+===================================================== -->
+
+<section id="services" class="py-24 px-4 dark-section">
+
+  <div class="max-w-7xl mx-auto">
+
+
+    <!-- TITLE -->
+
+    <div class="text-center reveal">
+
+      <span class="text-blue-600 text-sm font-bold uppercase tracking-wider">
+        Our Services
+      </span>
+
+      <h2 class="text-3xl md:text-4xl font-extrabold mt-2 dark-text">
+
+        हमारी प्रमुख सेवाएँ
+
+      </h2>
+
+      <p class="text-slate-500 dark-muted max-w-2xl mx-auto mt-3">
+
+        सभी प्रमुख डिजिटल, सरकारी और ऑनलाइन सेवाएँ एक ही स्थान पर।
+
+      </p>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="max-w-2xl mx-auto mt-8 search-box">
+
+      <div class="relative">
+
+        <i class="fa-solid fa-magnifying-glass absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+
+        <input
+          id="serviceSearch"
+          type="text"
+          placeholder="Service खोजें... जैसे PAN, Aadhaar, Voter"
+          oninput="filterServices()"
+          class="w-full pl-12 pr-5 py-4 rounded-2xl border border-slate-200 bg-white outline-none focus:ring-2 focus:ring-blue-500">
+
+      </div>
+
+    </div>
+
+
+    <!-- FILTERS -->
+
+    <div class="flex flex-wrap justify-center gap-2 mt-5">
+
+      <button onclick="filterCategory('all',this)"
+        class="category-btn active px-4 py-2 rounded-full border border-slate-200 bg-white text-sm font-medium transition">
+
+        सभी
+
+      </button>
+
+      <button onclick="filterCategory('identity',this)"
+        class="category-btn px-4 py-2 rounded-full border border-slate-200 bg-white text-sm font-medium transition">
+
+        Identity
+
+      </button>
+
+      <button onclick="filterCategory('certificate',this)"
+        class="category-btn px-4 py-2 rounded-full border border-slate-200 bg-white text-sm font-medium transition">
+
+        Certificates
+
+      </button>
+
+      <button onclick="filterCategory('government',this)"
+        class="category-btn px-4 py-2 rounded-full border border-slate-200 bg-white text-sm font-medium transition">
+
+        Government
+
+      </button>
+
+      <button onclick="filterCategory('banking',this)"
+        class="category-btn px-4 py-2 rounded-full border border-slate-200 bg-white text-sm font-medium transition">
+
+        Banking
+
+      </button>
+
+      <button onclick="filterCategory('online',this)"
+        class="category-btn px-4 py-2 rounded-full border border-slate-200 bg-white text-sm font-medium transition">
+
+        Online
+
+      </button>
+
+    </div>
+
+
+    <!-- SERVICE GRID -->
+
+    <div id="serviceGrid"
+      class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+
+
+
+
+      <!-- ===== IDENTITY SERVICES ===== -->
+
+
+      <!-- PAN -->
+
+      <div class="service-card dark-card reveal bg-white rounded-2xl p-6 border border-slate-100 shadow-sm"
+        data-category="identity"
+        data-name="pan card pan correction">
+
+        <div class="flex items-start gap-4">
+
+          <div class="service-icon w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-2xl flex-shrink-0">
+
+            <i class="fa-solid fa-id-card"></i>
+
+          </div>
+
+          <div>
+
+            <h3 class="font-bold text-lg dark-text">
+              PAN Card
+            </h3>
+
+            <p class="text-xs text-slate-500 dark-muted mt-1">
+              नया PAN एवं Correction
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <p class="text-sm text-slate-600 dark-muted mt-4 leading-relaxed">
+
+          नया पैन कार्ड आवेदन, नाम, जन्मतिथि और अन्य विवरण में सुधार।
+
+        </p>
+
+
+        <button onclick="openService('PAN Card Apply & Correction','Aadhaar Card, Photo, Mobile Number, Signature')"
+          class="mt-5 text-blue-600 font-semibold text-sm hover:text-blue-800">
+
+          Details देखें
+          <i class="fa-solid fa-arrow-right ml-1"></i>
+
+        </button>
+
+      </div>
+
+
+
+      <!-- VOTER -->
+
+      <div class="service-card dark-card reveal bg-white rounded-2xl p-6 border border-slate-100 shadow-sm"
+        data-category="identity"
+        data-name="voter election voter id">
+
+        <div class="flex items-start gap-4">
+
+          <div class="service-icon w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl">
+
+            <i class="fa-solid fa-check-to-slot"></i>
+
+          </div>
+
+          <div>
+
+            <h3 class="font-bold text-lg dark-text">
+              Voter Card
+            </h3>
+
+            <p class="text-xs text-slate-500 dark-muted mt-1">
+              New Registration & Correction
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <p class="text-sm text-slate-600 dark-muted mt-4">
+          नया वोटर कार्ड, नाम/पता सुधार और डिजिटल वोटर कार्ड।
+        </p>
+
+
+        <button onclick="openService('Voter Card Services','Aadhaar Card, Photo, Mobile Number, Address Proof')"
+          class="mt-5 text-blue-600 font-semibold text-sm hover:text-blue-800">
+
+          Details देखें
+          <i class="fa-solid fa-arrow-right ml-1"></i>
+
+        </button>
+
+      </div>
+
+
+
+      <!-- AADHAAR -->
+
+      <div class="service-card dark-card reveal bg-white rounded-2xl p-6 border border-slate-100 shadow-sm"
+        data-category="identity"
+        data-name="aadhaar update correction print">
+
+        <div class="flex items-start gap-4">
+
+          <div class="service-icon w-14 h-14 rounded-2xl bg-yellow-50 text-yellow-600 flex items-center justify-center text-2xl">
+
+            <i class="fa-solid fa-fingerprint"></i>
+
+          </div>
+
+          <div>
+
+            <h3 class="font-bold text-lg dark-text">
+              Aadhaar Card
+            </h3>
+
+            <p class="text-xs text-slate-500 dark-muted mt-1">
+              Update, Correction & Print
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <p class="text-sm text-slate-600 dark-muted mt-4">
+          नाम, पता, मोबाइल अपडेट एवं आधार प्रिंट।
+        </p>
+
+
+        <button onclick="openService('Aadhaar Update & Print','Existing Aadhaar, Mobile Number, Supporting Documents')"
+          class="mt-5 text-blue-600 font-semibold text-sm hover:text-blue-800">
+
+          Details देखें
+          <i class="fa-solid fa-arrow-right ml-1"></i>
+
+        </button>
+
+      </div>
+
+
+
+
+
+      <!-- ===== CERTIFICATE SERVICES ===== -->
+
+
+      <!-- CERTIFICATES -->
+
+      <div class="service-card dark-card reveal bg-white rounded-2xl p-6 border border-slate-100 shadow-sm"
+        data-category="certificate"
+        data-name="birth death marriage certificate">
+
+        <div class="flex items-start gap-4">
+
+          <div class="service-icon w-14 h-14 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center text-2xl">
+
+            <i class="fa-solid fa-file-signature"></i>
+
+          </div>
+
+          <div>
+
+            <h3 class="font-bold text-lg dark-text">
+              जन्म/मृत्यु/विवाह
+            </h3>
+
+            <p class="text-xs text-slate-500 dark-muted mt-1">
+              Certificate Services
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <p class="text-sm text-slate-600 dark-muted mt-4">
+          जन्म, मृत्यु एवं विवाह प्रमाण पत्र हेतु आवेदन।
+        </p>
+
+
+        <button onclick="openService('Birth / Death / Marriage Certificate','Hospital Slip / Proof Documents, Aadhaar Card')"
+          class="mt-5 text-blue-600 font-semibold text-sm hover:text-blue-800">
+
+          Details देखें
+          <i class="fa-solid fa-arrow-right ml-1"></i>
+
+        </button>
+
+      </div>
+
+
+
+      <!-- ABC CARD -->
+
+      <div class="service-card dark-card reveal bg-white rounded-2xl p-6 border border-slate-100 shadow-sm"
+        data-category="certificate"
+        data-name="abc card academic bank of credit id">
+
+        <div class="flex items-start gap-4">
+
+          <div class="service-icon w-14 h-14 rounded-2xl bg-fuchsia-50 text-fuchsia-600 flex items-center justify-center text-2xl">
+
+            <i class="fa-solid fa-graduation-cap"></i>
+
+          </div>
+
+          <div>
+
+            <h3 class="font-bold text-lg dark-text">
+              ABC Card
+            </h3>
+
+            <p class="text-xs text-slate-500 dark-muted mt-1">
+              Academic Bank of Credits ID
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <p class="text-sm text-slate-600 dark-muted mt-4">
+          Academic Bank of Credits (ABC) ID निर्माण एवं लिंकिंग।
+        </p>
+
+
+        <button onclick="openService('ABC Card (Academic Bank of Credits)','Aadhaar Card, Mobile Number, College/University ID, Email ID')"
+          class="mt-5 text-blue-600 font-semibold text-sm hover:text-blue-800">
+
+          Details देखें
+          <i class="fa-solid fa-arrow-right ml-1"></i>
+
+        </button>
+
+      </div>
+
+
+
+
+
+      <!-- ===== GOVERNMENT SERVICES ===== -->
+
+
+      <!-- RTPS -->
+
+      <div class="service-card dark-card reveal bg-white rounded-2xl p-6 border border-slate-100 shadow-sm"
+        data-category="government"
+        data-name="rtps caste income residence certificate">
+
+        <div class="flex items-start gap-4">
+
+          <div class="service-icon w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-2xl">
+
+            <i class="fa-solid fa-file-circle-check"></i>
+
+          </div>
+
+          <div>
+
+            <h3 class="font-bold text-lg dark-text">
+              RTPS सेवाएँ
+            </h3>
+
+            <p class="text-xs text-slate-500 dark-muted mt-1">
+              Caste, Income, Residence
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <p class="text-sm text-slate-600 dark-muted mt-4">
+          जाति, आय एवं निवास प्रमाण पत्र हेतु आवेदन।
+        </p>
+
+
+        <button onclick="openService('RTPS Certificate Services','Aadhaar Card, Photo, Address Proof')"
+          class="mt-5 text-blue-600 font-semibold text-sm hover:text-blue-800">
+
+          Details देखें
+          <i class="fa-solid fa-arrow-right ml-1"></i>
+
+        </button>
+
+      </div>
+
+
+
+      <!-- AYUSHMAN -->
+
+      <div class="service-card dark-card reveal bg-white rounded-2xl p-6 border border-slate-100 shadow-sm"
+        data-category="government"
+        data-name="ayushman bharat health card">
+
+        <div class="flex items-start gap-4">
+
+          <div class="service-icon w-14 h-14 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center text-2xl">
+
+            <i class="fa-solid fa-notes-medical"></i>
+
+          </div>
+
+          <div>
+
+            <h3 class="font-bold text-lg dark-text">
+              Ayushman Card
+            </h3>
+
+            <p class="text-xs text-slate-500 dark-muted mt-1">
+              Health Insurance Card
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <p class="text-sm text-slate-600 dark-muted mt-4">
+          आयुष्मान भारत हेल्थ कार्ड निर्माण एवं डाउनलोड।
+        </p>
+
+
+        <button onclick="openService('Ayushman Bharat Card','Aadhaar Card, Ration Card, Mobile Number')"
+          class="mt-5 text-blue-600 font-semibold text-sm hover:text-blue-800">
+
+          Details देखें
+          <i class="fa-solid fa-arrow-right ml-1"></i>
+
+        </button>
+
+      </div>
+
+
+
+      <!-- PASSPORT -->
+
+      <div class="service-card dark-card reveal bg-white rounded-2xl p-6 border border-slate-100 shadow-sm"
+        data-category="government"
+        data-name="passport application">
+
+        <div class="flex items-start gap-4">
+
+          <div class="service-icon w-14 h-14 rounded-2xl bg-cyan-50 text-cyan-600 flex items-center justify-center text-2xl">
+
+            <i class="fa-solid fa-passport"></i>
+
+          </div>
+
+          <div>
+
+            <h3 class="font-bold text-lg dark-text">
+              Passport Apply
+            </h3>
+
+            <p class="text-xs text-slate-500 dark-muted mt-1">
+              New & Renewal Application
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <p class="text-sm text-slate-600 dark-muted mt-4">
+          नया पासपोर्ट आवेदन एवं रिन्यूअल हेतु सहायता।
+        </p>
+
+
+        <button onclick="openService('Passport Application','Aadhaar Card, Photo, Address Proof, Birth Certificate')"
+          class="mt-5 text-blue-600 font-semibold text-sm hover:text-blue-800">
+
+          Details देखें
+          <i class="fa-solid fa-arrow-right ml-1"></i>
+
+        </button>
+
+      </div>
+
+
+
+      <!-- DRIVING LICENSE -->
+
+      <div class="service-card dark-card reveal bg-white rounded-2xl p-6 border border-slate-100 shadow-sm"
+        data-category="government"
+        data-name="driving license dl learning license renewal">
+
+        <div class="flex items-start gap-4">
+
+          <div class="service-icon w-14 h-14 rounded-2xl bg-lime-50 text-lime-600 flex items-center justify-center text-2xl">
+
+            <i class="fa-solid fa-id-card-clip"></i>
+
+          </div>
+
+          <div>
+
+            <h3 class="font-bold text-lg dark-text">
+              Driving License
+            </h3>
+
+            <p class="text-xs text-slate-500 dark-muted mt-1">
+              Learning & Permanent DL
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <p class="text-sm text-slate-600 dark-muted mt-4">
+          लर्निंग लाइसेंस, परमानेंट DL एवं रिन्यूअल हेतु आवेदन।
+        </p>
+
+
+        <button onclick="openService('Driving License Services','Aadhaar Card, Photo, Signature, Age Proof')"
+          class="mt-5 text-blue-600 font-semibold text-sm hover:text-blue-800">
+
+          Details देखें
+          <i class="fa-solid fa-arrow-right ml-1"></i>
+
+        </button>
+
+      </div>
+
+
+
+      <!-- RATION CARD -->
+
+      <div class="service-card dark-card reveal bg-white rounded-2xl p-6 border border-slate-100 shadow-sm"
+        data-category="government"
+        data-name="ration card new addition name">
+
+        <div class="flex items-start gap-4">
+
+          <div class="service-icon w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-2xl">
+
+            <i class="fa-solid fa-wheat-awn"></i>
+
+          </div>
+
+          <div>
+
+            <h3 class="font-bold text-lg dark-text">
+              Ration Card
+            </h3>
+
+            <p class="text-xs text-slate-500 dark-muted mt-1">
+              New Card & Member Addition
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <p class="text-sm text-slate-600 dark-muted mt-4">
+          नया राशन कार्ड, सदस्य जोड़ना एवं सुधार हेतु आवेदन।
+        </p>
+
+
+        <button onclick="openService('Ration Card Services','Aadhaar Card, Photo, Address Proof, Family Details')"
+          class="mt-5 text-blue-600 font-semibold text-sm hover:text-blue-800">
+
+          Details देखें
+          <i class="fa-solid fa-arrow-right ml-1"></i>
+
+        </button>
+
+      </div>
+
+
+
+      <!-- LAND RECORD -->
+
+      <div class="service-card dark-card reveal bg-white rounded-2xl p-6 border border-slate-100 shadow-sm"
+        data-category="government"
+        data-name="land record bhu naksha jamabandi lagan">
+
+        <div class="flex items-start gap-4">
+
+          <div class="service-icon w-14 h-14 rounded-2xl bg-stone-50 text-stone-600 flex items-center justify-center text-2xl">
+
+            <i class="fa-solid fa-map-location-dot"></i>
+
+          </div>
+
+          <div>
+
+            <h3 class="font-bold text-lg dark-text">
+              भूमि/भू-लगान
+            </h3>
+
+            <p class="text-xs text-slate-500 dark-muted mt-1">
+              Land Record & Lagan Payment
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <p class="text-sm text-slate-600 dark-muted mt-4">
+          जमाबंदी, भू-नक्शा एवं ऑनलाइन भू-लगान भुगतान।
+        </p>
+
+
+        <button onclick="openService('Land Record & Lagan Services','Khata / Khesra Number, Aadhaar Card')"
+          class="mt-5 text-blue-600 font-semibold text-sm hover:text-blue-800">
+
+          Details देखें
+          <i class="fa-solid fa-arrow-right ml-1"></i>
+
+        </button>
+
+      </div>
+
+
+
+      <!-- LABOUR CARD -->
+
+      <div class="service-card dark-card reveal bg-white rounded-2xl p-6 border border-slate-100 shadow-sm"
+        data-category="government"
+        data-name="labour card shramik card registration">
+
+        <div class="flex items-start gap-4">
+
+          <div class="service-icon w-14 h-14 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center text-2xl">
+
+            <i class="fa-solid fa-helmet-safety"></i>
+
+          </div>
+
+          <div>
+
+            <h3 class="font-bold text-lg dark-text">
+              श्रमिक कार्ड
+            </h3>
+
+            <p class="text-xs text-slate-500 dark-muted mt-1">
+              Labour Card Registration
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <p class="text-sm text-slate-600 dark-muted mt-4">
+          भवन एवं अन्य निर्माण श्रमिक कार्ड पंजीकरण।
+        </p>
+
+
+        <button onclick="openService('Labour / Shramik Card Registration','Aadhaar Card, Photo, Work Proof')"
+          class="mt-5 text-blue-600 font-semibold text-sm hover:text-blue-800">
+
+          Details देखें
+          <i class="fa-solid fa-arrow-right ml-1"></i>
+
+        </button>
+
+      </div>
+
+
+
+      <!-- E-SHRAM CARD -->
+
+      <div class="service-card dark-card reveal bg-white rounded-2xl p-6 border border-slate-100 shadow-sm"
+        data-category="government"
+        data-name="e shram card eshram labour unorganised worker">
+
+        <div class="flex items-start gap-4">
+
+          <div class="service-icon w-14 h-14 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center text-2xl">
+
+            <i class="fa-solid fa-hard-hat"></i>
+
+          </div>
+
+          <div>
+
+            <h3 class="font-bold text-lg dark-text">
+              e-Shram Card
+            </h3>
+
+            <p class="text-xs text-slate-500 dark-muted mt-1">
+              Unorganised Worker Registration
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <p class="text-sm text-slate-600 dark-muted mt-4">
+          असंगठित श्रमिकों हेतु e-Shram कार्ड पंजीकरण एवं डाउनलोड।
+        </p>
+
+
+        <button onclick="openService('e-Shram Card Registration','Aadhaar Card, Mobile Number (Aadhaar Linked), Bank Passbook')"
+          class="mt-5 text-blue-600 font-semibold text-sm hover:text-blue-800">
+
+          Details देखें
+          <i class="fa-solid fa-arrow-right ml-1"></i>
+
+        </button>
+
+      </div>
+
+
+
+
+
+      <!-- ===== BANKING SERVICES ===== -->
+
+
+      <!-- AEPS -->
+
+      <div class="service-card dark-card reveal bg-white rounded-2xl p-6 border border-slate-100 shadow-sm"
+        data-category="banking"
+        data-name="aeps banking cash withdrawal money transfer">
+
+        <div class="flex items-start gap-4">
+
+          <div class="service-icon w-14 h-14 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center text-2xl">
+
+            <i class="fa-solid fa-money-bill-transfer"></i>
+
+          </div>
+
+          <div>
+
+            <h3 class="font-bold text-lg dark-text">
+              AEPS Banking
+            </h3>
+
+            <p class="text-xs text-slate-500 dark-muted mt-1">
+              Cash Withdrawal & Transfer
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <p class="text-sm text-slate-600 dark-muted mt-4">
+          आधार आधारित नकद निकासी एवं मनी ट्रांसफर सेवा।
+        </p>
+
+
+        <button onclick="openService('AEPS Banking Services','Aadhaar Card, Registered Mobile Number')"
+          class="mt-5 text-blue-600 font-semibold text-sm hover:text-blue-800">
+
+          Details देखें
+          <i class="fa-solid fa-arrow-right ml-1"></i>
+
+        </button>
+
+      </div>
+
+
+
+      <!-- BANK ACCOUNT OPENING -->
+
+      <div class="service-card dark-card reveal bg-white rounded-2xl p-6 border border-slate-100 shadow-sm"
+        data-category="banking"
+        data-name="bank account opening savings account">
+
+        <div class="flex items-start gap-4">
+
+          <div class="service-icon w-14 h-14 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center text-2xl">
+
+            <i class="fa-solid fa-piggy-bank"></i>
+
+          </div>
+
+          <div>
+
+            <h3 class="font-bold text-lg dark-text">
+              Bank Account
+            </h3>
+
+            <p class="text-xs text-slate-500 dark-muted mt-1">
+              Savings Account Opening
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <p class="text-sm text-slate-600 dark-muted mt-4">
+          नया बैंक बचत खाता खोलने में सहायता।
+        </p>
+
+
+        <button onclick="openService('Bank Account Opening','Aadhaar Card, PAN Card, Photo, Mobile Number')"
+          class="mt-5 text-blue-600 font-semibold text-sm hover:text-blue-800">
+
+          Details देखें
+          <i class="fa-solid fa-arrow-right ml-1"></i>
+
+        </button>
+
+      </div>
+
+
+
+      <!-- MOBILE RECHARGE / BILL PAYMENT -->
+
+      <div class="service-card dark-card reveal bg-white rounded-2xl p-6 border border-slate-100 shadow-sm"
+        data-category="banking"
+        data-name="mobile recharge bill payment electricity">
+
+        <div class="flex items-start gap-4">
+
+          <div class="service-icon w-14 h-14 rounded-2xl bg-green-50 text-green-600 flex items-center justify-center text-2xl">
+
+            <i class="fa-solid fa-mobile-screen-button"></i>
+
+          </div>
+
+          <div>
+
+            <h3 class="font-bold text-lg dark-text">
+              Recharge & Bill Pay
+            </h3>
+
+            <p class="text-xs text-slate-500 dark-muted mt-1">
+              Mobile, Electricity & DTH
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <p class="text-sm text-slate-600 dark-muted mt-4">
+          मोबाइल रिचार्ज, बिजली बिल एवं DTH भुगतान सेवा।
+        </p>
+
+
+        <button onclick="openService('Recharge & Bill Payment','Mobile Number / Consumer Number')"
+          class="mt-5 text-blue-600 font-semibold text-sm hover:text-blue-800">
+
+          Details देखें
+          <i class="fa-solid fa-arrow-right ml-1"></i>
+
+        </button>
+
+      </div>
+
+
+
+
+
+      <!-- ===== ONLINE / EDUCATION SERVICES ===== -->
+
+
+      <!-- ONLINE FORMS -->
+
+      <div class="service-card dark-card reveal bg-white rounded-2xl p-6 border border-slate-100 shadow-sm"
+        data-category="online"
+        data-name="online form filling exam admission job">
+
+        <div class="flex items-start gap-4">
+
+          <div class="service-icon w-14 h-14 rounded-2xl bg-pink-50 text-pink-600 flex items-center justify-center text-2xl">
+
+            <i class="fa-solid fa-laptop"></i>
+
+          </div>
+
+          <div>
+
+            <h3 class="font-bold text-lg dark-text">
+              Online Forms
+            </h3>
+
+            <p class="text-xs text-slate-500 dark-muted mt-1">
+              Exam, Admission & Job Forms
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <p class="text-sm text-slate-600 dark-muted mt-4">
+          परीक्षा, एडमिशन एवं जॉब हेतु ऑनलाइन फॉर्म भरना।
+        </p>
+
+
+        <button onclick="openService('Online Form Filling','Relevant Certificates, Photo, Signature')"
+          class="mt-5 text-blue-600 font-semibold text-sm hover:text-blue-800">
+
+          Details देखें
+          <i class="fa-solid fa-arrow-right ml-1"></i>
+
+        </button>
+
+      </div>
+
+
+
+      <!-- SCHOLARSHIP -->
+
+      <div class="service-card dark-card reveal bg-white rounded-2xl p-6 border border-slate-100 shadow-sm"
+        data-category="online"
+        data-name="scholarship form pre post matric national">
+
+        <div class="flex items-start gap-4">
+
+          <div class="service-icon w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl">
+
+            <i class="fa-solid fa-award"></i>
+
+          </div>
+
+          <div>
+
+            <h3 class="font-bold text-lg dark-text">
+              Scholarship Form
+            </h3>
+
+            <p class="text-xs text-slate-500 dark-muted mt-1">
+              Pre-Matric / Post-Matric
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <p class="text-sm text-slate-600 dark-muted mt-4">
+          छात्रवृत्ति हेतु ऑनलाइन आवेदन एवं रिन्यूअल।
+        </p>
+
+
+        <button onclick="openService('Scholarship Form Filling','Aadhaar Card, Bank Passbook, Marksheet, Income/Caste Certificate, Photo')"
+          class="mt-5 text-blue-600 font-semibold text-sm hover:text-blue-800">
+
+          Details देखें
+          <i class="fa-solid fa-arrow-right ml-1"></i>
+
+        </button>
+
+      </div>
+
+
+
+      <!-- IGNOU ADMISSION -->
+
+      <div class="service-card dark-card reveal bg-white rounded-2xl p-6 border border-slate-100 shadow-sm"
+        data-category="online"
+        data-name="ignou admission re registration assignment">
+
+        <div class="flex items-start gap-4">
+
+          <div class="service-icon w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-2xl">
+
+            <i class="fa-solid fa-book-open"></i>
+
+          </div>
+
+          <div>
+
+            <h3 class="font-bold text-lg dark-text">
+              IGNOU Admission
+            </h3>
+
+            <p class="text-xs text-slate-500 dark-muted mt-1">
+              New Admission & Re-Registration
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <p class="text-sm text-slate-600 dark-muted mt-4">
+          IGNOU नया एडमिशन, री-रजिस्ट्रेशन एवं असाइनमेंट सबमिशन।
+        </p>
+
+
+        <button onclick="openService('IGNOU Admission & Re-Registration','10th/12th/Graduation Marksheet, Aadhaar Card, Photo, Signature, Category Certificate (if any)')"
+          class="mt-5 text-blue-600 font-semibold text-sm hover:text-blue-800">
+
+          Details देखें
+          <i class="fa-solid fa-arrow-right ml-1"></i>
+
+        </button>
+
+      </div>
+
+
+
+      <!-- PURNEA UNIVERSITY -->
+
+      <div class="service-card dark-card reveal bg-white rounded-2xl p-6 border border-slate-100 shadow-sm"
+        data-category="online"
+        data-name="purnea university admission exam form migration marksheet">
+
+        <div class="flex items-start gap-4">
+
+          <div class="service-icon w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-2xl">
+
+            <i class="fa-solid fa-building-columns"></i>
+
+          </div>
+
+          <div>
+
+            <h3 class="font-bold text-lg dark-text">
+              Purnea University
+            </h3>
+
+            <p class="text-xs text-slate-500 dark-muted mt-1">
+              Admission, Exam Form & Marksheet
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <p class="text-sm text-slate-600 dark-muted mt-4">
+          पूर्णिया विश्वविद्यालय एडमिशन, परीक्षा फॉर्म एवं माइग्रेशन/मार्कशीट सेवा।
+        </p>
+
+
+        <button onclick="openService('Purnea University Services','10th/12th Marksheet, Aadhaar Card, Photo, Signature, Category Certificate (if any)')"
+          class="mt-5 text-blue-600 font-semibold text-sm hover:text-blue-800">
+
+          Details देखें
+          <i class="fa-solid fa-arrow-right ml-1"></i>
+
+        </button>
+
+      </div>
+
+
+
+      <!-- RESUME / CV -->
+
+      <div class="service-card dark-card reveal bg-white rounded-2xl p-6 border border-slate-100 shadow-sm"
+        data-category="online"
+        data-name="resume cv making job biodata">
+
+        <div class="flex items-start gap-4">
+
+          <div class="service-icon w-14 h-14 rounded-2xl bg-slate-100 text-slate-700 flex items-center justify-center text-2xl">
+
+            <i class="fa-solid fa-file-lines"></i>
+
+          </div>
+
+          <div>
+
+            <h3 class="font-bold text-lg dark-text">
+              Resume / CV
+            </h3>
+
+            <p class="text-xs text-slate-500 dark-muted mt-1">
+              Job Resume & Bio-Data Making
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <p class="text-sm text-slate-600 dark-muted mt-4">
+          जॉब हेतु प्रोफेशनल Resume/CV एवं बायो-डाटा निर्माण।
+        </p>
+
+
+        <button onclick="openService('Resume / CV Making','Photo, Educational Certificates, Work Experience Details, Mobile Number')"
+          class="mt-5 text-blue-600 font-semibold text-sm hover:text-blue-800">
+
+          Details देखें
+          <i class="fa-solid fa-arrow-right ml-1"></i>
+
+        </button>
+
+      </div>
+
+
+
+      <!-- PRINT / XEROX / LAMINATION -->
+
+      <div class="service-card dark-card reveal bg-white rounded-2xl p-6 border border-slate-100 shadow-sm"
+        data-category="online"
+        data-name="printing xerox photocopy lamination scan">
+
+        <div class="flex items-start gap-4">
+
+          <div class="service-icon w-14 h-14 rounded-2xl bg-violet-50 text-violet-600 flex items-center justify-center text-2xl">
+
+            <i class="fa-solid fa-print"></i>
+
+          </div>
+
+          <div>
+
+            <h3 class="font-bold text-lg dark-text">
+              Printing & Xerox
+            </h3>
+
+            <p class="text-xs text-slate-500 dark-muted mt-1">
+              Photocopy, Scan & Lamination
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <p class="text-sm text-slate-600 dark-muted mt-4">
+          फोटोकॉपी, प्रिंटआउट, स्कैनिंग एवं लैमिनेशन सेवा।
+        </p>
+
+
+        <button onclick="openService('Printing, Xerox & Lamination','Document / Pendrive')"
+          class="mt-5 text-blue-600 font-semibold text-sm hover:text-blue-800">
+
+          Details देखें
+          <i class="fa-solid fa-arrow-right ml-1"></i>
+
+        </button>
+
+      </div>
+
+
+
+
+
+    </div>
+
+
+    <!-- NO RESULTS -->
+
+    <div id="noResults" class="hidden text-center py-16">
+
+      <i class="fa-solid fa-magnifying-glass text-4xl text-slate-300"></i>
+
+      <p class="text-slate-500 dark-muted mt-4">
+        कोई सेवा नहीं मिली। कृपया दूसरा नाम खोजें।
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FREE TOOLS (Cyber Hub Tools app)
+===================================================== -->
+
+<section id="tools" class="py-20 px-4 dark-section">
+
+  <div class="max-w-7xl mx-auto">
+
+    <div class="text-center mb-8">
+      <h2 class="text-3xl md:text-4xl font-extrabold dark-text">🧰 Free Online Tools</h2>
+      <p class="text-slate-500 dark-muted mt-3">
+        PDF, Photo, Calculator, Student, Employee और Cyber Cafe के 60+ tools — सीधे यहीं इस्तेमाल करें।
+      </p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-2 mb-6">
+        <button onclick="openTools('all')" class="category-btn px-4 py-2 rounded-full border border-slate-200 bg-white dark-card text-sm font-medium hover:border-blue-500 transition">🧰 सभी Tools</button>
+        <button onclick="openTools('student')" class="category-btn px-4 py-2 rounded-full border border-slate-200 bg-white dark-card text-sm font-medium hover:border-blue-500 transition">🎓 Student & Teacher</button>
+        <button onclick="openTools('employee')" class="category-btn px-4 py-2 rounded-full border border-slate-200 bg-white dark-card text-sm font-medium hover:border-blue-500 transition">💼 Employee & Money</button>
+        <button onclick="openTools('cafe')" class="category-btn px-4 py-2 rounded-full border border-slate-200 bg-white dark-card text-sm font-medium hover:border-blue-500 transition">☕ Cyber Cafe</button>
+        <button onclick="openTools('pdf')" class="category-btn px-4 py-2 rounded-full border border-slate-200 bg-white dark-card text-sm font-medium hover:border-blue-500 transition">📄 PDF</button>
+        <button onclick="openTools('image')" class="category-btn px-4 py-2 rounded-full border border-slate-200 bg-white dark-card text-sm font-medium hover:border-blue-500 transition">🖼️ Image</button>
+        <button onclick="openTools('calculator')" class="category-btn px-4 py-2 rounded-full border border-slate-200 bg-white dark-card text-sm font-medium hover:border-blue-500 transition">🧮 Calculators</button>
+        <button onclick="openTools('documents')" class="category-btn px-4 py-2 rounded-full border border-slate-200 bg-white dark-card text-sm font-medium hover:border-blue-500 transition">📝 Documents</button>
+        <button onclick="openTools('text')" class="category-btn px-4 py-2 rounded-full border border-slate-200 bg-white dark-card text-sm font-medium hover:border-blue-500 transition">🔤 Text</button>
+    </div>
+
+    <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-lg bg-white dark-card">
+      <iframe id="toolsFrame" src="tools.html" title="CYBER HUB Tools" loading="lazy"
+        style="width:100%;height:80vh;min-height:620px;border:0;"></iframe>
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="tools.html" target="_blank" class="text-blue-600 font-semibold text-sm hover:underline">
+        <i class="fa-solid fa-up-right-from-square"></i> Tools को पूरी स्क्रीन में खोलें
+      </a>
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section id="about" class="py-20 px-4 bg-white dark-card">
+
+  <div class="max-w-5xl mx-auto text-center reveal">
+
+    <span class="text-blue-600 text-sm font-bold uppercase tracking-wider">
+      About Us
+    </span>
+
+    <h2 class="text-3xl md:text-4xl font-extrabold mt-2 dark-text">
+      हमारे बारे में
+    </h2>
+
+    <p class="text-slate-600 dark-muted max-w-3xl mx-auto mt-5 leading-relaxed">
+      CYBER HUB, सिकटी, अररिया में स्थित एक भरोसेमंद Digital Service Point है, जहाँ आपको
+      PAN Card, Aadhaar, Voter ID, RTPS प्रमाण पत्र, Ayushman Card, Passport, AEPS Banking
+      और Online Form जैसी सभी ज़रूरी सेवाएँ एक ही जगह, उचित मूल्य पर, तेज़ी से मिलती हैं।
+    </p>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<section id="contact" class="py-20 px-4 dark-section">
+
+  <div class="max-w-4xl mx-auto text-center reveal">
+
+    <span class="text-blue-600 text-sm font-bold uppercase tracking-wider">
+      Contact Us
+    </span>
+
+    <h2 class="text-3xl md:text-4xl font-extrabold mt-2 dark-text">
+      संपर्क करें
+    </h2>
+
+    <div class="grid sm:grid-cols-2 gap-5 mt-10">
+
+      <a href="tel:+917368087908"
+        class="dark-card bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition">
+
+        <i class="fa-solid fa-phone text-2xl text-blue-600"></i>
+
+        <p class="font-bold mt-3 dark-text">
+          Call Us
+        </p>
+
+        <p class="text-sm text-slate-500 dark-muted mt-1">
+          +91 73680 87908
+        </p>
+
+      </a>
+
+      <a href="https://wa.me/917368087908" target="_blank"
+        class="dark-card bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition">
+
+        <i class="fa-brands fa-whatsapp text-2xl text-emerald-600"></i>
+
+        <p class="font-bold mt-3 dark-text">
+          WhatsApp
+        </p>
+
+        <p class="text-sm text-slate-500 dark-muted mt-1">
+          Chat करें
+        </p>
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="bg-slate-900 text-slate-300 py-10 px-4">
+
+  <div class="max-w-6xl mx-auto text-center text-sm">
+
+    &copy; <span id="year"></span> CYBER HUB — Digital Service Point, Sikti, Araria. All Rights Reserved.
+
+  </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     SERVICE DETAIL MODAL
+===================================================== -->
+
+<div id="serviceModal"
+  class="modal fixed inset-0 z-[60] flex items-center justify-center bg-slate-900/60 px-4">
+
+  <div class="modal-box dark-card bg-white rounded-2xl p-6 w-full max-w-md shadow-2xl">
+
+    <div class="flex items-start justify-between">
+
+      <h3 id="modalTitle" class="font-bold text-xl dark-text pr-4"></h3>
+
+      <button onclick="closeModal()"
+        class="w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 flex items-center justify-center flex-shrink-0">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </div>
+
+    <p class="text-xs uppercase tracking-wide text-blue-600 font-bold mt-5">
+      आवश्यक दस्तावेज़
+    </p>
+
+    <p id="modalDocs" class="text-sm text-slate-600 dark-muted mt-2 leading-relaxed"></p>
+
+    <a id="modalWhatsapp" href="#" target="_blank"
+      class="mt-6 flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white py-3 rounded-xl font-semibold transition">
+      <i class="fa-brands fa-whatsapp"></i>
+      WhatsApp पर पूछें
+    </a>
+
+  </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     SCRIPT
+===================================================== -->
+
+<script>
+
+  // ---------- FREE TOOLS ----------
+
+  function openTools(view) {
+    const f = document.getElementById('toolsFrame');
+    f.src = 'tools.html?view=' + encodeURIComponent(view);
+    f.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // ---------- MOBILE MENU ----------
+
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('hidden');
+  }
+
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.add('hidden');
+  }
+
+  // ---------- DARK MODE ----------
+
+  function toggleDarkMode() {
+    const body = document.body;
+    body.classList.toggle('dark');
+
+    const icon = document.getElementById('themeIcon');
+    const isDark = body.classList.contains('dark');
+
+    icon.classList.toggle('fa-moon', !isDark);
+    icon.classList.toggle('fa-sun', isDark);
+
+    localStorage.setItem('cyberhub-theme', isDark ? 'dark' : 'light');
+  }
+
+  (function initTheme() {
+    try {
+      if (localStorage.getItem('cyberhub-theme') === 'dark') {
+        document.body.classList.add('dark');
+        window.addEventListener('DOMContentLoaded', () => {
+          const icon = document.getElementById('themeIcon');
+          if (icon) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+          }
+        });
+      }
+    } catch (e) {}
+  })();
+
+  // ---------- SERVICE SEARCH + FILTER ----------
+
+  let activeCategory = 'all';
+
+  function filterServices() {
+    const query = document.getElementById('serviceSearch').value.trim().toLowerCase();
+    const cards = document.querySelectorAll('#serviceGrid .service-card');
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const name = card.getAttribute('data-name') || '';
+      const category = card.getAttribute('data-category') || '';
+
+      const matchesSearch = query === '' || name.includes(query);
+      const matchesCategory = activeCategory === 'all' || category === activeCategory;
+
+      if (matchesSearch && matchesCategory) {
+        card.classList.remove('hidden-card');
+        visibleCount++;
+      } else {
+        card.classList.add('hidden-card');
+      }
+    });
+
+    document.getElementById('noResults').classList.toggle('hidden', visibleCount !== 0);
+  }
+
+  function filterCategory(category, btn) {
+    activeCategory = category;
+
+    document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    filterServices();
+  }
+
+  // ---------- SERVICE DETAIL MODAL ----------
+
+  function openService(title, docs) {
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalDocs').textContent = docs;
+
+    const waText = encodeURIComponent('नमस्ते CYBER HUB, मुझे "' + title + '" सेवा के बारे में जानकारी चाहिए।');
+    document.getElementById('modalWhatsapp').href = 'https://wa.me/917368087908?text=' + waText;
+
+    document.getElementById('serviceModal').classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('serviceModal').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('serviceModal').addEventListener('click', function (e) {
+    if (e.target === this) closeModal();
+  });
+
+  // ---------- REVEAL ON SCROLL ----------
+
+  const revealEls = document.querySelectorAll('.reveal');
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // ---------- FOOTER YEAR ----------
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+</script>
+
+</body>
 </html>

@@ -96,4 +96,17 @@
       w.document.close(); w.focus(); setTimeout(() => w.print(), 400);
     };
   });
+
+  // ---- deep links: tools.html?view=pdf  /  tools.html?tool=upi-qr ; back link when opened full-screen ----
+  window.addEventListener('load', () => {
+    const q = new URLSearchParams(location.search);
+    if (window.CyberApp) {
+      if (q.get('view')) CyberApp.renderView(q.get('view'));
+      if (q.get('tool')) CyberApp.openTool(q.get('tool'));
+    }
+    if (window.self === window.top) {
+      const r = document.querySelector('.header-right');
+      if (r) r.insertAdjacentHTML('afterbegin', '<a href="index.html" class="btn btn-secondary btn-sm" style="text-decoration:none;">← Website</a>');
+    }
+  });
 })();
