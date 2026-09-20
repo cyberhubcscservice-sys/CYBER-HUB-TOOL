@@ -1,0 +1,10 @@
+{
+  "name": "CYBER HUB",
+  "description": "All-in-One Cyber Cafe Operating System and Digital Service Point for Sikti, Araria, Bihar - by Rahul Rrony.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
