@@ -29,6 +29,7 @@ Object.assign(window.CyberTools, {
       'date-difference': () => this.renderDateDiff(container),
       'discount-calculator': () => this.renderDiscount(container)
     };
+    if (this.extraTools && this.extraTools[tool.id]) return this.extraTools[tool.id](container);
     if (map[tool.id]) return map[tool.id]();
     container.innerHTML = `
       <div style="max-width:520px;margin:30px auto;text-align:center;padding:28px;background:var(--surface);border:1px solid var(--border);border-radius:12px;">

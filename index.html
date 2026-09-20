@@ -22,6 +22,7 @@
     <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 
     <!-- Cyber Hub Stylesheet -->
     <link rel="stylesheet" href="./style.css" />
@@ -151,6 +152,21 @@
             <i class="fa-solid fa-font" style="color: #06b6d4;"></i>
             <span>Text Utilities</span>
           </button>
+
+          <button class="nav-item" data-view="student" onclick="CyberApp.renderView('student')">
+            <i class="fa-solid fa-graduation-cap" style="color: #ec4899;"></i>
+            <span>Student & Teacher</span>
+          </button>
+
+          <button class="nav-item" data-view="employee" onclick="CyberApp.renderView('employee')">
+            <i class="fa-solid fa-briefcase" style="color: #14b8a6;"></i>
+            <span>Employee & Money</span>
+          </button>
+
+          <button class="nav-item" data-view="cafe" onclick="CyberApp.renderView('cafe')">
+            <i class="fa-solid fa-mug-hot" style="color: #f97316;"></i>
+            <span>Cyber Cafe Utilities</span>
+          </button>
         </nav>
 
         <div class="nav-section-title">Recently Opened</div>
@@ -230,6 +246,8 @@
     <script src="./tools-engine.js"></script>
     <script src="./tools-engine-pdf-biz.js"></script>
     <script src="./tools-extra.js"></script>
+    <script src="./tools-more.js"></script>
+    <script src="./tools-final.js"></script>
     <script src="./app.js"></script>
   </body>
 </html>

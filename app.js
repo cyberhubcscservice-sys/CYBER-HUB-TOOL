@@ -523,6 +523,24 @@ window.CyberApp = {
           <div class="cat-title">Business & Khata</div>
           <div class="cat-desc">Customer registry, income ledger, receipts & rates.</div>
         </div>
+
+        <div class="category-card" onclick="CyberApp.renderView('student')">
+          <div class="cat-icon" style="color: #ec4899;"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div class="cat-title">Student & Teacher</div>
+          <div class="cat-desc">Attendance, marks, typing test, random picker.</div>
+        </div>
+
+        <div class="category-card" onclick="CyberApp.renderView('employee')">
+          <div class="cat-icon" style="color: #14b8a6;"><i class="fa-solid fa-briefcase"></i></div>
+          <div class="cat-title">Employee & Money</div>
+          <div class="cat-desc">Salary, wages, leave days, SIP, FD and to-do list.</div>
+        </div>
+
+        <div class="category-card" onclick="CyberApp.renderView('cafe')">
+          <div class="cat-icon" style="color: #f97316;"><i class="fa-solid fa-mug-hot"></i></div>
+          <div class="cat-title">Cyber Cafe Utilities</div>
+          <div class="cat-desc">UPI QR, token counter, WhatsApp link, amount in words.</div>
+        </div>
       </div>
     `;
   },
@@ -561,7 +579,7 @@ window.CyberApp = {
       <!-- Filters & Search Toolbar -->
       <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; margin-bottom: 20px;">
         <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-          ${['all', 'pdf', 'image', 'calculator', 'documents', 'text', 'business'].map(cat => `
+          ${['all', 'pdf', 'image', 'calculator', 'documents', 'text', 'business', 'student', 'employee', 'cafe'].map(cat => `
             <button class="btn btn-sm ${this.state.selectedCategory === cat ? 'btn-primary' : 'btn-secondary'}" 
                     onclick="CyberApp.filterCategory('${cat}')">
               ${cat.toUpperCase()}
